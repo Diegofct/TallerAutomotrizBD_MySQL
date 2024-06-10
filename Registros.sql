@@ -164,3 +164,170 @@ INSERT INTO Reparacion (idReparacion, fecha, costoTotal, descripcion, idVehiculo
 (8, '2024-06-08 09:00:00', 60.00, 'Diagnóstico de motor.', 8, 8, 9),
 (9, '2024-06-09 12:45:00', 150.00, 'Cambio de correa de distribución.', 9, 9, 10),
 (10, '2024-06-10 11:00:00', 120.00, 'Reemplazo de frenos y revisión.', 10, 10, 3);
+
+INSERT INTO Proveedor (idProveedor, nombre, telefono, telefono2, email) VALUES 
+(1, 'Repuestos y Más', '3001234567', '3002345678', 'contacto@repuestosymas.com'),
+(2, 'AutoPartes', '3011234567', '3012345678', 'ventas@autopartes.com'),
+(3, 'Piezas y Accesorios', '3021234567', '3022345678', 'info@piezasyaccesorios.com'),
+(4, 'Distribuidora Automotriz', '3031234567', '3032345678', 'contacto@distribuidoraauto.com'),
+(5, 'Repuestos del Norte', '3041234567', '3042345678', 'ventas@repuestosnorte.com'),
+(6, 'Repuestos Express', '3051234567', '3052345678', 'info@repuestoexpress.com'),
+(7, 'Accesorios del Sur', '3061234567', '3062345678', 'contacto@accesoriosdelsur.com'),
+(8, 'Mundo Automotriz', '3071234567', '3072345678', 'ventas@mundoautomotriz.com'),
+(9, 'Piezas Rápidas', '3081234567', '3082345678', 'info@piezasrapidas.com'),
+(10, 'Repuestos Global', '3091234567', '3092345678', 'contacto@repuestosglobal.com'),
+(11, 'Accesorios Universales', '3101234567', '3102345678', 'ventas@accesoriosuniversales.com'),
+(12, 'Piezas Originales', '3111234567', '3112345678', 'info@piezasoriginales.com'),
+(13, 'Repuestos de Calidad', '3121234567', '3122345678', 'contacto@repuestosdecalidad.com'),
+(14, 'Partes y Piezas', '3131234567', '3132345678', 'ventas@partesypiezas.com'),
+(15, 'Distribuciones Automotrices', '3141234567', '3142345678', 'info@distribucionesauto.com');
+
+INSERT INTO Pieza (idPieza, nombre, descripcion, precio, idProveedor) VALUES 
+(1, 'Filtro de Aceite', 'Filtro de aceite para motor', 15.00, 1),
+(2, 'Bujía', 'Bujía de encendido para motor', 10.00, 2),
+(3, 'Pastillas de Freno', 'Juego de pastillas de freno', 30.00, 3),
+(4, 'Batería', 'Batería de 12V para automóviles', 100.00, 4),
+(5, 'Neumático', 'Neumático radial para autos', 80.00, 5),
+(6, 'Correa de Distribución', 'Correa de distribución de alta resistencia', 60.00, 6),
+(7, 'Filtro de Aire', 'Filtro de aire para motor', 20.00, 7),
+(8, 'Amortiguador', 'Amortiguador para suspensión', 50.00, 8),
+(9, 'Espejo Retrovisor', 'Espejo retrovisor exterior', 25.00, 9),
+(10, 'Radiador', 'Radiador de enfriamiento para motor', 120.00, 10),
+(11, 'Alternador', 'Alternador para sistema eléctrico', 200.00, 11),
+(12, 'Bomba de Agua', 'Bomba de agua para sistema de enfriamiento', 70.00, 12),
+(13, 'Disco de Freno', 'Disco de freno ventilado', 40.00, 13),
+(14, 'Embrague', 'Kit de embrague completo', 150.00, 14),
+(15, 'Parachoques', 'Parachoques delantero para auto', 180.00, 15);
+
+
+INSERT INTO ReparacionPiezas (idReparacionPiezas, idReparacion, idPieza, cantidad) VALUES 
+(1, 1, 1, 1),  -- Cambio de aceite y filtro con 1 Filtro de Aceite
+(2, 2, 3, 1),  -- Reemplazo de pastillas de freno con 1 juego de Pastillas de Freno
+(3, 3, 5, 4),  -- Alineación y balanceo de ruedas con 4 Neumáticos
+(4, 4, 4, 1),  -- Reemplazo de batería con 1 Batería
+(5, 5, 5, 4),  -- Cambio de neumáticos con 4 Neumáticos
+(6, 6, 8, 2),  -- Revisión y ajuste de suspensión con 2 Amortiguadores
+(7, 9, 6, 1),  -- Cambio de correa de distribución con 1 Correa de Distribución
+(8, 10, 3, 1), -- Reemplazo de frenos y revisión con 1 juego de Pastillas de Freno
+(9, 2, 13, 2), -- Reemplazo de pastillas de freno con 2 Discos de Freno
+(10, 4, 7, 1), -- Reemplazo de batería con 1 Filtro de Aire
+(11, 1, 2, 4), -- Cambio de aceite y filtro con 4 Bujías
+(12, 3, 1, 1), -- Alineación y balanceo de ruedas con 1 Filtro de Aceite
+(13, 5, 14, 1),-- Cambio de neumáticos con 1 Kit de Embrague
+(14, 6, 9, 1), -- Revisión y ajuste de suspensión con 1 Espejo Retrovisor
+(15, 8, 10, 1);-- Diagnóstico de motor con 1 Radiador
+
+
+INSERT INTO Cita (idCita, fechaHora, idCliente, idVehiculo, idServicio) VALUES
+(1, '2024-06-11 09:00:00', 1, 1, 1),  -- Juan López, Toyota, Cambio de Aceite
+(2, '2024-06-11 10:30:00', 2, 2, 3),  -- María González, Honda, Cambio de Frenos
+(3, '2024-06-11 12:00:00', 3, 3, 2),  -- Pedro Martínez, Ford, Alineación y Balanceo
+(4, '2024-06-11 13:30:00', 4, 4, 4),  -- Ana Rodríguez, Chevrolet, Cambio de Batería
+(5, '2024-06-11 15:00:00', 5, 5, 5),  -- Carlos Sánchez, Volkswagen, Cambio de Neumáticos
+(6, '2024-06-12 09:00:00', 6, 6, 6),  -- Laura Pérez, Nissan, Revisión de Suspensión
+(7, '2024-06-12 10:30:00', 7, 7, 7),  -- Luis Gómez, Hyundai, Lavado Exterior
+(8, '2024-06-12 12:00:00', 8, 8, 8),  -- Sofía Díaz, BMW, Lavado Interior
+(9, '2024-06-12 13:30:00', 9, 9, 9),  -- Javier Hernández, Mercedes-Benz, Diagnóstico de Motor
+(10, '2024-06-12 15:00:00', 10, 10, 10), -- Elena Castillo, Audi, Cambio de Correa de Distribución
+(11, '2024-06-13 09:00:00', 11, 11, 1), -- Daniel Vargas, Toyota, Cambio de Aceite
+(12, '2024-06-13 10:30:00', 12, 12, 2), -- Valeria López, Honda, Alineación y Balanceo
+(13, '2024-06-13 12:00:00', 13, 13, 3), -- Diego Martínez, Ford, Cambio de Frenos
+(14, '2024-06-13 13:30:00', 14, 14, 4), -- Carolina González, Chevrolet, Cambio de Batería
+(15, '2024-06-13 15:00:00', 15, 15, 5), -- Andrés Pérez, Volkswagen, Cambio de Neumáticos
+(16, '2024-06-14 09:00:00', 16, 16, 6), -- Natalia Sánchez, Nissan, Revisión de Suspensión
+(17, '2024-06-14 10:30:00', 17, 17, 7), -- Martín Gómez, Hyundai, Lavado Exterior
+(18, '2024-06-14 12:00:00', 18, 18, 8), -- Fernanda Díaz, BMW, Lavado Interior
+(19, '2024-06-14 13:30:00', 19, 19, 9), -- Alejandro Hernández, Mercedes-Benz, Diagnóstico de Motor
+(20, '2024-06-14 15:00:00', 20, 20, 10); -- Camila Castillo, Audi, Cambio de Correa de Distribución
+
+
+INSERT INTO Inventario (idInventario, cantidad, ubicacion, idPieza) VALUES
+(1, 100, 'Almacén A1', 1),  -- Aceite de Motor, Proveedor Automotriz S.A.
+(2, 50, 'Almacén A2', 2),   -- Filtro de Aceite, Proveedor Automotriz S.A.
+(3, 200, 'Almacén A3', 3),  -- Pastillas de Freno, Proveedor de Frenos S.A.
+(4, 80, 'Almacén A4', 4),   -- Batería, Baterías y Más
+(5, 150, 'Almacén A5', 5),  -- Neumático 16", Neumáticos y Ruedas S.A.
+(6, 75, 'Almacén A6', 6),   -- Amortiguador, Repuestos de Suspensión
+(7, 300, 'Almacén B1', 7),  -- Líquido de Frenos, Proveedor de Frenos S.A.
+(8, 120, 'Almacén B2', 8),  -- Cera de Carrocería, Limpieza y Más
+(9, 90, 'Almacén B3', 9),   -- Shampoo para Tapicería, Limpieza y Más
+(10, 60, 'Almacén B4', 10), -- Correa de Distribución, Repuestos de Suspensión
+(11, 110, 'Almacén C1', 11), -- Filtro de Aire, Proveedor Automotriz S.A.
+(12, 95, 'Almacén C2', 12),  -- Filtro de Combustible, Proveedor Automotriz S.A.
+(13, 130, 'Almacén C3', 13), -- Radiador, Repuestos de Suspensión
+(14, 70, 'Almacén C4', 14),  -- Bujías, Proveedor Automotriz S.A.
+(15, 85, 'Almacén C5', 15),  -- Alternador, Baterías y Más
+(16, 140, 'Almacén D1', 16), -- Embrague, Proveedor de Frenos S.A.
+(17, 45, 'Almacén D2', 17),  -- Rueda de Repuesto, Neumáticos y Ruedas S.A.
+(18, 160, 'Almacén D3', 18), -- Espejo Retrovisor, Proveedor Automotriz S.A.
+(19, 115, 'Almacén D4', 19), -- Faro Delantero, Proveedor Automotriz S.A.
+(20, 105, 'Almacén D5', 20); -- Parachoques, Repuestos de Suspensión
+
+
+INSERT INTO OrdenCompra (idOrdenCompra, fecha, total, idEmpleado, idProveedor) VALUES
+(1, '2024-01-05 09:00:00', 1500.00, 1, 1), -- Juan Pérez, Automotriz S.A.
+(2, '2024-02-10 10:15:00', 2500.00, 2, 2), -- María González, Proveedor de Frenos S.A.
+(3, '2024-03-15 11:30:00', 2000.00, 3, 3), -- Pedro Martínez, Baterías y Más
+(4, '2024-04-20 12:45:00', 3000.00, 4, 4), -- Ana López, Neumáticos y Ruedas S.A.
+(5, '2024-05-25 14:00:00', 1800.00, 5, 5), -- Carlos Sánchez, Repuestos de Suspensión
+(6, '2024-06-30 15:15:00', 2200.00, 6, 6), -- Laura Rodríguez, Limpieza y Más
+(7, '2024-07-05 16:30:00', 2500.00, 7, 1), -- Luis Hernández, Automotriz S.A.
+(8, '2024-08-10 09:00:00', 2750.00, 8, 2), -- Sofía Díaz, Proveedor de Frenos S.A.
+(9, '2024-09-15 10:15:00', 3000.00, 9, 3), -- Javier Paz, Baterías y Más
+(10, '2024-10-20 11:30:00', 3250.00, 10, 4), -- Elena Mendoza, Neumáticos y Ruedas S.A.
+(11, '2024-11-25 12:45:00', 1750.00, 11, 5), -- Daniel Castillo, Repuestos de Suspensión
+(12, '2024-12-30 14:00:00', 1900.00, 12, 6), -- Valeria Vargas, Limpieza y Más
+(13, '2025-01-05 15:15:00', 2300.00, 13, 1), -- Diego Gómez, Automotriz S.A.
+(14, '2025-02-10 16:30:00', 2100.00, 14, 2), -- Carolina Gutiérrez, Proveedor de Frenos S.A.
+(15, '2025-03-15 09:00:00', 2600.00, 15, 3), -- Andrés Santos, Baterías y Más
+(16, '2025-04-20 10:15:00', 2900.00, 16, 4), -- Natalia Paz, Neumáticos y Ruedas S.A.
+(17, '2025-05-25 11:30:00', 1700.00, 17, 5), -- Martín López, Repuestos de Suspensión
+(18, '2025-06-30 12:45:00', 1950.00, 18, 6), -- Fernanda Díaz, Limpieza y Más
+(19, '2025-07-05 14:00:00', 2400.00, 19, 1), -- Alejandro Mendoza, Automotriz S.A.
+(20, '2025-08-10 15:15:00', 2200.00, 20, 2); -- Camila Castillo, Proveedor de Frenos S.A.
+
+
+INSERT INTO OrdenDetalle (idOrdenDetalle, cantidad, precio, idPieza) VALUES
+(1, 10, 500.00, 1), -- Filtro de aire, $50.00 cada uno
+(2, 5, 400.00, 2),  -- Bujía de encendido, $80.00 cada uno
+(3, 7, 210.00, 3),  -- Aceite de motor, $30.00 cada uno
+(4, 8, 160.00, 4),  -- Filtro de aceite, $20.00 cada uno
+(5, 4, 720.00, 5),  -- Batería de coche, $180.00 cada una
+(6, 12, 600.00, 6), -- Juego de pastillas de freno, $50.00 cada juego
+(7, 6, 600.00, 7),  -- Juego de amortiguadores, $100.00 cada juego
+(8, 9, 270.00, 8),  -- Juego de limpiaparabrisas, $30.00 cada juego
+(9, 3, 1050.00, 9), -- Juego de neumáticos, $350.00 cada uno
+(10, 15, 450.00, 10),-- Juego de luces, $30.00 cada juego
+(11, 8, 640.00, 11), -- Correa de distribución, $80.00 cada una
+(12, 5, 450.00, 12), -- Alternador, $90.00 cada uno
+(13, 10, 300.00, 13),-- Radiador, $30.00 cada uno
+(14, 6, 240.00, 14), -- Filtro de combustible, $40.00 cada uno
+(15, 8, 320.00, 15), -- Juego de correas, $40.00 cada juego
+(16, 7, 700.00, 16), -- Bomba de agua, $100.00 cada una
+(17, 10, 350.00, 17),-- Bomba de gasolina, $35.00 cada una
+(18, 4, 400.00, 18), -- Juego de discos de freno, $100.00 cada juego
+(19, 5, 250.00, 19), -- Juego de bujías, $50.00 cada juego
+(20, 6, 120.00, 20); -- Juego de filtros, $20.00 cada juego
+
+
+INSERT INTO Factura (idFactura, fecha, idCliente, total) VALUES
+(1, '2024-06-01 08:30:00', 1, 120.00), -- Juan López
+(2, '2024-06-02 09:45:00', 2, 200.00), -- María González
+(3, '2024-06-03 10:00:00', 3, 180.00), -- Pedro Martínez
+(4, '2024-06-04 11:15:00', 4, 150.00), -- Ana Rodríguez
+(5, '2024-06-05 12:30:00', 5, 250.00), -- Carlos Sánchez
+(6, '2024-06-06 13:45:00', 6, 300.00), -- Laura Pérez
+(7, '2024-06-07 14:00:00', 7, 220.00), -- Luis Gómez
+(8, '2024-06-08 08:30:00', 8, 180.00), -- Sofía Díaz
+(9, '2024-06-09 09:45:00', 9, 200.00), -- Javier Hernández
+(10, '2024-06-10 10:00:00', 10, 150.00), -- Elena Castillo
+(11, '2024-06-11 11:15:00', 11, 300.00), -- Daniel Vargas
+(12, '2024-06-12 12:30:00', 12, 350.00), -- Valeria López
+(13, '2024-06-13 13:45:00', 13, 180.00), -- Diego Martínez
+(14, '2024-06-14 14:00:00', 14, 200.00), -- Carolina González
+(15, '2024-06-15 08:30:00', 15, 250.00), -- Andrés Pérez
+(16, '2024-06-16 09:45:00', 16, 280.00), -- Natalia Sánchez
+(17, '2024-06-17 10:00:00', 17, 300.00), -- Martín Gómez
+(18, '2024-06-18 11:15:00', 18, 180.00), -- Fernanda Díaz
+(19, '2024-06-19 12:30:00', 19, 200.00), -- Alejandro Hernández
+(20, '2024-06-20 13:45:00', 20, 150.00); -- Camila Castillo
