@@ -190,4 +190,38 @@ ORDER BY e.idEmpleado, r.fecha;
 ## SUBCONSULTAS
 
 1. Obtener el cliente que ha gastado más en reparaciones durante el último año.
+```sql
+SELECT c.nombre AS Cliente, SUM(f.total) AS TotalPago, f.fecha
+FROM Factura f
+JOIN Cliente c
+ON c.idCliente = f.idCliente
+WHERE f.total = (SELECT MAX(f2.total) FROM Factura f2) AND YEAR(f.fecha) = '2024'
+GROUP BY Cliente, f.fecha;
+```
+![](./img/subconsulta1.png)
 
+3. Obtener los proveedores que suministran las piezas más caras.
+```sql
+SELECT p.nombre AS Pieza, (SELECT pr.nombre FROM Proveedor pr WHERE pr.idProveedor = p.idProveedor) AS Proveedor, p.precio
+FROM Pieza p
+ORDER BY p.precio DESC
+LIMIT 6;
+```
+![](./img/subconsulta3.png)
+
+4. Listar las reparaciones que no utilizaron piezas específicas durante el último año.
+```sql
+SELECT r.idReparacion
+FROM Reparacion r
+WHERE r.fecha BETWEEN '2023-07-01' AND '2024-07-01'
+AND r.idReparacion NOT IN (
+    SELECT rp.idReparacion
+    FROM ReparacionPiezas rp
+    WHERE rp.idPieza = 3
+)
+LIMIT 6;
+```
+![](./img/subconsulta4.png)
+
+
+## Procedimientos Almacenados
