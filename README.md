@@ -200,6 +200,15 @@ GROUP BY Cliente, f.fecha;
 ```
 ![](./img/subconsulta1.png)
 
+2. Obtener la pieza más utilizada en reparaciones durante el último mes
+```sql
+SELECT p.nombre AS Pieza, TotalUsada
+FROM Pieza p
+JOIN (SELECT rp.idPieza, SUM(rp.cantidad) AS TotalUsada FROM ReparacionPiezas rp JOIN Reparacion r ON rp.idReparacion = r.idReparacion WHERE r.fecha >= DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY rp.idPieza) AS subquery ON p.idPieza = subquery.idPieza
+ORDER BY TotalUsada DESC
+LIMIT 1;
+```
+
 3. Obtener los proveedores que suministran las piezas más caras.
 ```sql
 SELECT p.nombre AS Pieza, (SELECT pr.nombre FROM Proveedor pr WHERE pr.idProveedor = p.idProveedor) AS Proveedor, p.precio

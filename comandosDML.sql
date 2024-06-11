@@ -257,11 +257,11 @@ INSERT INTO Inventario (idInventario, cantidad, ubicacion, idPieza) VALUES
 (13, 130, 'Almacén C3', 13), -- Radiador, Repuestos de Suspensión
 (14, 70, 'Almacén C4', 14),  -- Bujías, Proveedor Automotriz S.A.
 (15, 85, 'Almacén C5', 15),  -- Alternador, Baterías y Más
-(16, 140, 'Almacén D1', 16), -- Embrague, Proveedor de Frenos S.A.
-(17, 45, 'Almacén D2', 17),  -- Rueda de Repuesto, Neumáticos y Ruedas S.A.
-(18, 160, 'Almacén D3', 18), -- Espejo Retrovisor, Proveedor Automotriz S.A.
-(19, 115, 'Almacén D4', 19), -- Faro Delantero, Proveedor Automotriz S.A.
-(20, 105, 'Almacén D5', 20); -- Parachoques, Repuestos de Suspensión
+(16, 140, 'Almacén D1', 6), -- Embrague, Proveedor de Frenos S.A.
+(17, 45, 'Almacén D2', 7),  -- Rueda de Repuesto, Neumáticos y Ruedas S.A.
+(18, 160, 'Almacén D3', 8), -- Espejo Retrovisor, Proveedor Automotriz S.A.
+(19, 115, 'Almacén D4', 9), -- Faro Delantero, Proveedor Automotriz S.A.
+(20, 105, 'Almacén D5', 10); -- Parachoques, Repuestos de Suspensión
 
 
 INSERT INTO OrdenCompra (idOrdenCompra, fecha, total, idEmpleado, idProveedor) VALUES
@@ -303,11 +303,11 @@ INSERT INTO OrdenDetalle (idOrdenDetalle, cantidad, precio, idPieza) VALUES
 (13, 10, 300.00, 13),-- Radiador, $30.00 cada uno
 (14, 6, 240.00, 14), -- Filtro de combustible, $40.00 cada uno
 (15, 8, 320.00, 15), -- Juego de correas, $40.00 cada juego
-(16, 7, 700.00, 16), -- Bomba de agua, $100.00 cada una
-(17, 10, 350.00, 17),-- Bomba de gasolina, $35.00 cada una
-(18, 4, 400.00, 18), -- Juego de discos de freno, $100.00 cada juego
-(19, 5, 250.00, 19), -- Juego de bujías, $50.00 cada juego
-(20, 6, 120.00, 20); -- Juego de filtros, $20.00 cada juego
+(16, 7, 700.00, 6), -- Bomba de agua, $100.00 cada una
+(17, 10, 350.00, 7),-- Bomba de gasolina, $35.00 cada una
+(18, 4, 400.00, 8), -- Juego de discos de freno, $100.00 cada juego
+(19, 5, 250.00, 9), -- Juego de bujías, $50.00 cada juego
+(20, 6, 120.00, 10); -- Juego de filtros, $20.00 cada juego
 
 
 INSERT INTO Factura (idFactura, fecha, idCliente, total) VALUES

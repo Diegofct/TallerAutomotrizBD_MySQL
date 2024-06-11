@@ -66,14 +66,10 @@ CREATE TABLE Vehiculo (
     idVehiculo INT PRIMARY KEY,
     placa VARCHAR(10),
     marca VARCHAR(50),
-    modelo VARCHAR(45),
+    modelo YEAR,
     idCliente INT,
     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
-
-ALTER TABLE Vehiculo
-MODIFY COLUMN modelo YEAR;
-
 
 CREATE TABLE Servicio (
     idServicio INT PRIMARY KEY,
