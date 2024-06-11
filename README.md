@@ -225,3 +225,24 @@ LIMIT 6;
 
 
 ## Procedimientos Almacenados
+
+1. Crear un procedimiento almacenado para insertar una nueva reparación.
+```sql
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertarReparacion;
+CREATE PROCEDURE insertarReparacion(
+    IN p_fecha DATETIME,
+    IN p_costoTotal DECIMAL(10,2),
+    IN p_descripcion VARCHAR(255),
+    IN p_idVehiculo INT,
+    IN p_idEmpleado INT,
+    IN p_idServicio INT
+)
+BEGIN
+    INSERT INTO Reparacion (idReparacion, fecha, costoTotal, descripcion, idVehiculo, idEmpleado, idServicio) 
+    VALUES (null, p_fecha, p_costoTotal, p_descripcion, p_idVehiculo, p_idEmpleado, p_idServicio);
+END $$
+DELIMITER ;
+
+CALL insertarReparacion('2024-07-01', 100000, 'Cambio Radiador', 3, 1, 5);
+```
