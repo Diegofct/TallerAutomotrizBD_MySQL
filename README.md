@@ -82,3 +82,112 @@ WHERE rp.idReparacion = 10;
 ![](./img/consulta8.png)
 
 9. Obtener el inventario de piezas que necesitan ser reabastecidas (cantidad menor que un umbral).
+```sql
+SELECT p.nombre, i.cantidad, i.ubicacion, p.precio
+FROM Inventario i
+INNER JOIN Pieza p ON i.idPieza = p.idPieza
+WHERE i.cantidad < 100;
+```
+![](./img/consulta9.png)
+
+10. Obtener la lista de servicios más solicitados en un período específico.
+```sql
+SELECT s.nombre, COUNT(r.idServicio) as cantidad
+FROM Reparacion r
+JOIN Servicio s ON r.idServicio = s.idServicio
+WHERE r.fecha BETWEEN '2024-06-01' AND '2024-06-07'
+GROUP BY s.nombre
+ORDER BY cantidad DESC;
+```
+![](./img/consulta10.png)
+
+11. Obtener el costo total de reparaciones para cada cliente en un período específico.
+
+```sql
+SELECT c.nombre, SUM(r.costoTotal) as costoTotal
+FROM Reparacion r
+JOIN Vehiculo v ON r.idVehiculo = v.idVehiculo
+JOIN Cliente c ON v.idCliente = c.idCliente
+WHERE r.fecha BETWEEN '2024-06-01' AND '2024-06-07'
+GROUP BY c.nombre
+ORDER BY costo_total DESC;
+```
+![](./img/consulta11.png)
+
+12. Listar los empleados con mayor cantidad de reparaciones realizadas en un período específico.
+```sql
+SELECT e.nombre, COUNT(r.idReparacion) as cantidadReparaciones
+FROM Reparacion r
+JOIN Empleado e ON r.idEmpleado = e.idEmpleado
+WHERE r.fecha BETWEEN '2024-06-01' AND '2024-06-05'
+GROUP BY e.nombre
+ORDER BY cantidadReparaciones DESC;
+```
+![](./img/consulta12.png)
+
+13. Obtener las piezas más utilizadas en reparaciones durante un período específico.
+```sql
+SELECT p.nombre, SUM(rp.cantidad) as cantidadUsos
+FROM ReparacionPiezas rp
+JOIN Pieza p ON rp.idPieza = p.idPieza
+JOIN Reparacion r ON rp.idReparacion = r.idReparacion
+WHERE r.fecha BETWEEN '2024-06-01' AND '2024-06-06'
+GROUP BY p.nombre
+ORDER BY cantidadUsos DESC;
+```
+
+![](./img/consulta13.png)
+
+14. Calcular el promedio de costo de reparaciones por vehículo
+```sql
+SELECT v.placa, AVG(r.costoTotal) as promedioCosto
+FROM Reparacion r
+JOIN Vehiculo v ON r.idVehiculo = v.idVehiculo
+GROUP BY v.placa;
+```
+![](./img/consulta14.png)
+
+15. Obtener el inventario de piezas por proveedor.
+```sql
+SELECT p.nombre AS Proveedor, SUM(i.cantidad) AS CantidadTotal
+FROM Inventario i
+INNER JOIN Pieza p ON i.idPieza = p.idPieza
+INNER JOIN Proveedor pr ON p.idProveedor = pr.idProveedor
+GROUP BY p.nombre;
+```
+![](./img/consulta15.png)
+
+16. Listar los clientes que no han realizado reparaciones en el último año.
+```sql
+SELECT c.idCliente, c.nombre, c.apellido
+FROM Cliente c
+LEFT JOIN Vehiculo v ON c.idCliente = v.idCliente
+LEFT JOIN Reparacion r ON v.idVehiculo = r.idVehiculo 
+AND r.fecha >= DATE_SUB(NOW(), INTERVAL 1 YEAR)
+WHERE r.idReparacion IS NULL;
+```
+![](./img/consulta16.png)
+
+17. Obtener las ganancias totales del taller en un período específico.
+```sql
+SELECT SUM(total) AS ganancias_totales
+FROM Factura
+WHERE fecha BETWEEN '2024-01-01' AND '2024-12-31';
+```
+![](./img/consulta17.png)
+
+19. Obtener el listado de servicios prestados por cada empleado en un período específico.
+```sql
+SELECT e.idEmpleado, e.nombre, e.apellido, s.idServicio, s.nombre AS nombreServicio, r.fecha
+FROM Reparacion r
+JOIN Servicio s ON r.idServicio = s.idServicio
+JOIN Empleado e ON r.idEmpleado = e.idEmpleado
+WHERE r.fecha BETWEEN '2024-01-01' AND '2024-12-31'
+ORDER BY e.idEmpleado, r.fecha;
+```
+![](./img/consulta19.png)
+
+## SUBCONSULTAS
+
+1. Obtener el cliente que ha gastado más en reparaciones durante el último año.
+
